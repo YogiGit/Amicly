@@ -1,0 +1,17 @@
+{
+  "name": "@amicly/parent-dashboard",
+  "version": "1.0.0",
+  "description": "Parent dashboard for Amicly",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'Parent dashboard development server would start here'",
+    "build": "echo 'Building parent dashboard...'",
+    "test": "echo 'Testing parent dashboard...'",
+    "lint": "echo 'Linting parent dashboard...'",
+    "type-check": "echo 'Type checking parent dashboard...'"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

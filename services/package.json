@@ -1,0 +1,19 @@
+{
+  "name": "@amicly/services",
+  "version": "1.0.0",
+  "description": "Amicly serverless functions",
+  "private": true,
+  "scripts": {
+    "sls": "serverless",
+    "offline": "serverless offline --stage dev",
+    "deploy": "serverless deploy",
+    "remove": "serverless remove"
+  },
+  "dependencies": {
+    "aws-lambda": "^1.0.7"
+  },
+  "devDependencies": {
+    "serverless": "^4.4.0",
+    "serverless-offline": "14.0.0"
+  }
+}
