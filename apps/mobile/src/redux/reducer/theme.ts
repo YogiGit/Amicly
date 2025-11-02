@@ -6,9 +6,11 @@ const initialState: ThemeState = {
   theme: getTheme('light'),
 };
 
+type ThemeAction = SetThemeAction | { type: string; [key: string]: any };
+
 export const themeReducer = (
   state = initialState,
-  action: SetThemeAction
+  action: ThemeAction
 ): ThemeState => {
   switch (action.type) {
     case SET_THEME:
