@@ -1,74 +1,75 @@
-# Development Workflow (amicaenv)
+# Development Workflow
 
 ## Local Development Setup
 
-### Prerequisites (amicaenv)
+### Prerequisites
 ```bash
-# Global Prerequisites (One-Time Setup)
-node --version  # 18.19.0 (via nvm)
-yarn --version  # 1.22.x or higher (only global dependency)
+# Node.js and package managers
+node --version  # 18.x or higher
+npm --version   # 9.x or higher
+yarn --version  # 1.22.x or higher
 
-# Verify amicaenv activation
-echo $PROJECT_ENV  # Should show: amicaenv
+# React Native development
+npx react-native doctor  # Validate RN environment
+expo --version            # Expo CLI for mobile development
 
-# Local development tools (via amicaenv)
-yarn expo --version           # Expo CLI (local to project)
-yarn eas --version            # EAS CLI (local to project)
-yarn cdk --version            # AWS CDK (local to project)
-yarn sls --version            # Serverless Framework (local to project)
+# AWS development tools
+aws --version             # AWS CLI v2
+sam --version             # AWS SAM for Lambda development
+cdk --version             # AWS CDK for infrastructure
 
-# External tools (still global)
-aws --version                 # AWS CLI v2 (global)
-psql --version               # PostgreSQL client (global)
+# Database tools
+psql --version            # PostgreSQL client for local DB
 ```
 
-### amicaenv Setup
+### Initial Setup
 ```bash
-# Clone repository and activate amicaenv
+# Clone repository and setup amicaenv
 git clone <amicly-repo>
 cd amicly
 
 # Activate amicaenv (project-isolated environment)
-yarn env:activate             # Activates amicaenv and installs all dependencies
+yarn env:activate          # Activates amicaenv and installs all dependencies
+# Alternative: source ./scripts/amicaenv-activate.sh
 
 # Setup environment variables
 cp .env.example .env.local
 # Edit .env.local with development values
 
 # Initialize local database
-yarn db:setup                 # Create local PostgreSQL database
-yarn db:migrate               # Run database migrations
-yarn db:seed                  # Seed with test data (teen-safe)
+yarn db:setup              # Create local PostgreSQL database
+yarn db:migrate            # Run database migrations
+yarn db:seed               # Seed with test data (teen-safe)
 
 # Setup AWS development environment
-aws configure                 # Configure AWS credentials (global AWS CLI)
-yarn infra:bootstrap          # Bootstrap CDK in AWS account
-yarn infra:deploy-dev         # Deploy development infrastructure
+aws configure              # Configure AWS credentials (global AWS CLI still needed)
+yarn infra:bootstrap       # Bootstrap CDK in AWS account
+yarn infra:deploy-dev      # Deploy development infrastructure
 ```
 
-### amicaenv Development Commands
+### Development Commands
 ```bash
-# Start all services in development mode
-yarn dev                      # Start mobile app, parent dashboard, and local Lambda functions
+# Start all services in development mode (amicaenv)
+yarn dev                   # Start mobile app, parent dashboard, and local Lambda functions
 
 # Start individual services
-yarn dev:mobile               # React Native app with Expo
-yarn dev:dashboard            # Parent dashboard (Next.js)
-yarn dev:services             # Local Lambda functions with SAM
-yarn dev:db                   # Start local PostgreSQL
+yarn dev:mobile            # React Native app with Expo
+yarn dev:dashboard         # Parent dashboard (Next.js)
+yarn dev:services          # Local Lambda functions with SAM
+yarn dev:db                # Start local PostgreSQL
 
 # Testing commands
-yarn test                     # Run all tests across packages
-yarn test:mobile              # Mobile app tests with React Native Testing Library
-yarn test:services            # Lambda function tests with Jest
-yarn test:e2e                 # End-to-end tests with Detox
-yarn test:safety              # Safety compliance tests
+yarn test                  # Run all tests across packages
+yarn test:mobile           # Mobile app tests with React Native Testing Library
+yarn test:services         # Lambda function tests with Jest
+yarn test:e2e              # End-to-end tests with Detox
+yarn test:safety           # Safety compliance tests
 
 # Code quality and safety
-yarn lint                     # ESLint across all packages
-yarn type-check               # TypeScript compilation check
-yarn safety-check             # Teen safety content validation
-yarn format                   # Prettier code formatting
+yarn lint                  # ESLint across all packages
+yarn type-check            # TypeScript compilation check
+yarn safety-check          # Teen safety content validation
+yarn format                # Prettier code formatting
 ```
 
 ## Environment Configuration

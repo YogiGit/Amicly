@@ -63,22 +63,22 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
+          cache: 'yarn'
 
       - name: Install Dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
 
       - name: Run Tests
         run: |
-          npm run test:mobile
-          npm run test:services
-          npm run test:integration
+          yarn test:mobile
+          yarn test:services
+          yarn test:integration
 
       - name: Build Applications
         run: |
-          npm run build:mobile
-          npm run build:dashboard
-          npm run build:services
+          yarn build:mobile
+          yarn build:dashboard
+          yarn build:services
 
   deploy-infrastructure:
     needs: build-and-test
